@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+    defaultConfig {
+        applicationId "com.vanhackathon.dreamshop"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+       // multiDexEnabled true
+    }
+    buildTypes {
+        all {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SHOP_DOMAIN", "\"dreamandshop.myshopify.com\""
+            buildConfigField "String", "API_KEY", "\"8ada472409a58bacffb8c054e1770894\""
+            buildConfigField "String", "APP_ID", "\"8\""
+            buildConfigField "boolean", "USE_RX_API", "false"
+
+            //buildConfigField "String", "ANDROID_PAY_PUBLIC_KEY",  "\"" + androidPayPublicKey.toString() + "\""
+        }
+    }
+
+
+
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.1.1'
+    compile 'me.drakeet.materialdialog:library:1.2.8'
+
+    compile 'com.android.support:design:24.1.1'
+    compile 'com.android.support:recyclerview-v7:24.1.1'
+    compile 'com.android.support:cardview-v7:24.1.1'
+    compile 'com.google.firebase:firebase-auth:9.6.1'
+    compile 'com.google.android.gms:play-services-auth:9.6.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.makeramen:roundedimageview:2.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.google.firebase:firebase-storage:9.6.1'
+    compile 'com.makeramen:roundedimageview:2.0.1'
+
+
+   // compile 'com.shopify.mobilebuysdk:buy:2.0.2'
+
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+
+
+
+/*
+Example of shopify API
+
+//compile 'com.shopify.mobilebuysdk:buy:2.0.2'
+
+
+BuyClient b = new BuyClientBuilder()
+        .shopDomain(BuildConfig.SHOP_DOMAIN)
+        .apiKey(BuildConfig.API_KEY)
+        .appId(BuildConfig.APP_ID)
+        .applicationName(getApplication().getPackageName())
+        .build();
+
+
+
+b.getShop(new Callback<Shop>() {
+    @Override
+    public void success(Shop shop) {
+        shop.getCity();
+    }
+
+    @Override
+    public void failure(BuyClientError error) {
+        error.printStackTrace();
+    }
+});
+
+
+
+b.getProducts(1, new Callback<List<Product>>() {
+    @Override
+    public void success(List<Product> products) {
+        products.toArray();
+    }
+
+    @Override
+    public void failure(BuyClientError error) {
+        error.printStackTrace();
+    }
+});*/

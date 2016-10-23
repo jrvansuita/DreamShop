@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PageMarker">
+        <attr name="vertical_padding" format="dimension" />
+        <attr name="horizontal_padding" format="dimension" />
+        <attr name="circle_width" format="dimension" />
+        <attr name="circle_height" format="dimension" />
+        <attr name="drawable_selected" format="integer" />
+        <attr name="drawable_unselected" format="integer" />
+        <attr name="animator" format="integer" />
+    </declare-styleable>
+
+</resources>

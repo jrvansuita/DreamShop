@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "928064318448",
+    "firebase_url": "https://vanhackathon-1d4be.firebaseio.com",
+    "project_id": "vanhackathon-1d4be",
+    "storage_bucket": "vanhackathon-1d4be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928064318448:android:4b062cff1519f2f7",
+        "android_client_info": {
+          "package_name": "todo.list.warmup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928064318448-d3tjrek35igr317rbutc6k2p7jkpt8c4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "todo.list.warmup",
+            "certificate_hash": "A95748981CDF62286024E606481BFD5144F46BAD"
+          }
+        },
+        {
+          "client_id": "928064318448-j0tbpjd3msp8ua3s9074ma0jhnflgste.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgtZtpFtQlEcX9BoiqTrVrjNZfI1RNz8I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928064318448-j0tbpjd3msp8ua3s9074ma0jhnflgste.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "928064318448-4vtgmg6a4nklfnoke51pn48f7di62nbf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.github.cassianomonteiro.DreamShop"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928064318448:android:ab2befa80106fa7b",
+        "android_client_info": {
+          "package_name": "com.vanhackathon.dreamshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928064318448-ptujttl97s21r9fh0dqh5a6fbu7rf29n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vanhackathon.dreamshop",
+            "certificate_hash": "A95748981CDF62286024E606481BFD5144F46BAD"
+          }
+        },
+        {
+          "client_id": "928064318448-j0tbpjd3msp8ua3s9074ma0jhnflgste.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgtZtpFtQlEcX9BoiqTrVrjNZfI1RNz8I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928064318448-j0tbpjd3msp8ua3s9074ma0jhnflgste.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "928064318448-4vtgmg6a4nklfnoke51pn48f7di62nbf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.github.cassianomonteiro.DreamShop"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#8BC34A</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+    <color name="facebook">#0066ad</color>
+    <color name="facebook_pressed">#014f86</color>
+
+    <color name="twitter">#1da1f2</color>
+    <color name="twitter_pressed">#1887cc</color>
+
+    <color name="google">#cf1717</color>
+    <color name="google_pressed">#af1414</color>
+
+
+    <color name="button">#949eb4</color>
+    <color name="button_pressed">#788093</color>
+
+
+
+    <color name="third_text">#3b3a3a</color>
+
+    <color name="sha">#c63b3a3a</color>
+    <color name="freeze">#67d1eae6</color>
+    <color name="sheet">#efefef</color>
+
+    <color name="dreams_back">#99eae8e6</color>
+    <color name="app_bar_back">#ceebeaeb</color>
+
+
+</resources>

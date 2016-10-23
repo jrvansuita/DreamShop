@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="right"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/dreams_back" />
+
+
+    <View
+        style="@style/match_match"
+        android:background="@color/dreams_back" />
+
+
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.vanhackathon.dreamshop.view.LazyViewPager
+            android:id="@+id/view_pager"
+            style="@style/match_match"
+            android:layout_above="@+id/page_mark_down"
+            android:layout_margin="30dp" />
+
+
+        <com.vanhackathon.dreamshop.view.PageMarker
+            android:id="@+id/page_mark_down"
+            style="@style/match_wrap"
+            android:background="@color/app_bar_back"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal|bottom"
+            app:animator="@animator/indicator_no_animator"
+            app:circle_height="10dp"
+            app:circle_width="10dp"
+            app:drawable_selected="@drawable/bluish_circle"
+            app:drawable_unselected="@drawable/bluish_circle_a"
+            app:horizontal_padding="3dp"
+            app:vertical_padding="15dp" />
+
+
+    </RelativeLayout>
+</FrameLayout>

@@ -50,10 +50,10 @@
     </style>
 
     <style name="app_bar_buttons" parent="match_wrap">
-        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginLeft">35dp</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:padding">3dp</item>
     </style>
 
 </resources>

@@ -53,6 +53,9 @@ public class DreamsAdapter extends RecyclerView.Adapter<DreamsAdapter.ViewHolder
                     onDreamSelected.onDreamSelected(dream);
             }
         });
+
+        holder.layout.removeAllViews();
+
         DreamCardFragment.place((FragmentActivity) context, fix, dream.getId(), position);
 
     }

@@ -22,26 +22,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:background="@drawable/card"
             android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_alignParentLeft="true"
+                android:scaleType="centerInside"
+                android:id="@+id/profile_pic"
+                android:padding="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+
             <TextView
+                android:layout_toRightOf="@+id/profile_pic"
                 android:id="@+id/add_dream"
                 style="@style/label"
-                android:layout_gravity="center"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:padding="20dp"
                 android:text="@string/what"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <com.vanhackathon.dreamshop.view.SwipeToRefreshLayout
             android:id="@+id/swipe"

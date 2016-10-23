@@ -20,10 +20,10 @@ import java.util.regex.Pattern;
 public class YoutubeFrag extends YouTubePlayerFragment implements YouTubePlayer.OnInitializedListener {
 
     public static final String URL_TAG = "URL";
-    private static final String API_KEY = "AIzaSyA9fNsOyBqo_HCs1vVgxMp0AF0IjyddAdI";
+    public static final String API_KEY = "AIzaSyA9fNsOyBqo_HCs1vVgxMp0AF0IjyddAdI";
 
 
-    public static void place(FragmentActivity activity, int layoutId, String url){
+    public static void place(FragmentActivity activity, int layoutId, String url) {
         YoutubeFrag frag = new YoutubeFrag();
         Bundle b = new Bundle();
         b.putString(YoutubeFrag.URL_TAG, url);
@@ -53,7 +53,12 @@ public class YoutubeFrag extends YouTubePlayerFragment implements YouTubePlayer.
             //player.loadVideo(getVideoID(url));
             player.cueVideo(getVideoID(url));
 
-            ((ViewGroup)getView().getParent()).setVisibility(View.VISIBLE);
+            //player.get
+
+            if (getView() != null)
+                if (getView().getParent() != null) {
+                    ((ViewGroup) getView().getParent()).setVisibility(View.VISIBLE);
+                }
 
             // Hiding player controls
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);

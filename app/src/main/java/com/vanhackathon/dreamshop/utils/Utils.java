@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Patterns;
 import android.view.inputmethod.InputMethodManager;
 
 import java.io.ByteArrayOutputStream;
@@ -39,6 +40,13 @@ public class Utils {
         }
     }
 
+    public static boolean isYoutubeUrl(String u){
+        return  u.contains("youtu.be") || u.contains("youtube.com");
+    }
+
+    public static boolean isValidUrl(String u){
+        return  Patterns.WEB_URL.matcher(u).matches();
+    }
 
     public static byte[] getBytes(Uri selectedImage, Context context) {
         try {

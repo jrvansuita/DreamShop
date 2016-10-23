@@ -60,6 +60,22 @@
 
         </activity>
 
+        <activity
+            android:name=".act.TestActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="fullUser"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".act.MyDreamsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="fullUser"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+
     </application>
 
 </manifest>

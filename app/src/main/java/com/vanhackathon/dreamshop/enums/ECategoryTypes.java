@@ -8,9 +8,9 @@ import com.vanhackathon.dreamshop.R;
 
 public enum ECategoryTypes {
 
-    POPULAR("popular", R.mipmap.popular), TRAVEL("travel", R.mipmap.travel),
-    OUTDOOR("outdoor", R.mipmap.outdoor), SPORTS("sports", R.mipmap.sports),
-    PRODUCTS("products", R.mipmap.products), OTHERS("others", R.mipmap.others);
+    POPULAR("Popular", R.mipmap.popular), TRAVEL("Travel", R.mipmap.travel),
+    OUTDOOR("Outdoor", R.mipmap.outdoor), SPORTS("Sports", R.mipmap.sports),
+    PRODUCTS("Products", R.mipmap.products), OTHERS("Others", R.mipmap.others);
 
     final int icon;
     final String key;

@@ -6,18 +6,18 @@ package com.vanhackathon.dreamshop.bean;
 
 public class Layer {
 
-    private long id;
+    private Integer id;
     private String type;
     private String description;
     private String url;
     private String product_id;
     private int dream_id;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,7 +54,7 @@ public class Layer {
     }
 
 
-    public Layer(long id, String type, String description, String url, String productId) {
+    public Layer(Integer id, String type, String description, String url, String productId) {
         this.id = id;
         this.type = type;
         this.description = description;

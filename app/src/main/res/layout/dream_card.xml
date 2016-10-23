@@ -20,6 +20,8 @@
             android:layout_margin="5dp"
             android:layout_weight="0.4">
 
+
+
             <FrameLayout
                 android:id="@+id/video_frame"
                 android:layout_width="match_parent"
@@ -31,6 +33,12 @@
                 android:maxHeight="100dp"
                 android:padding="1dp"
                 android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/youtube_ico"
+                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
         </FrameLayout>
 
         <LinearLayout

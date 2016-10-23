@@ -55,7 +55,6 @@ public class DreamCardFragment extends Fragment {
 
         int idDream = getArguments().getInt(DREAM_ID_TAG);
 
-
         RestDream.get().getOne(idDream, new OnResult<Dream>() {
             @Override
             public void onResult(final Dream result) {
@@ -83,10 +82,15 @@ public class DreamCardFragment extends Fragment {
                 if (layer.getType().equalsIgnoreCase(ELayerType.PHOTO.getKey())) {
                     Picasso.with(context).load(layer.getUrl()).into(holder.ivPic);
                 } else if (layer.getType().equalsIgnoreCase(ELayerType.VIDEO.getKey())) {
-                    YoutubeFrag.place((FragmentActivity) context, dream.getId(), layer.getUrl());
+
+                    Icon.put(holder.vYoutubeIco,R.mipmap.youtube);
                     holder.vVideoFrame.setVisibility(View.VISIBLE);
-                    holder.vVideoFrame.setId(dream.getId());
+                    holder.vVideoFrame.setId(layer.getId());
                     holder.ivPic.setVisibility(View.GONE);
+
+                    YoutubePreviewFrag.place((FragmentActivity) context,  layer.getId(), layer.getUrl());
+
+
                 } else if (layer.getType().equalsIgnoreCase(ELayerType.PRODUCT.getKey())) {
 
                     RestShopify.build().requestProduct(layer.getProduct_id(), new OnResult<ProductPack>() {
@@ -137,11 +141,14 @@ public class DreamCardFragment extends Fragment {
 
 
     public static void place(FragmentActivity activity, int layoutId, int idDream, int labelInfo, int position) {
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .replace(layoutId, getFrag(idDream, labelInfo, position))
-                .commit();
+
+
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .replace(layoutId, getFrag(idDream, labelInfo, position))
+                    .commit();
+
     }
 
     public static Fragment getFrag(int idDream, int labelInfo, int position) {
@@ -177,7 +184,7 @@ public class DreamCardFragment extends Fragment {
         private TextView tvUser;
         private View vVideoFrame;
         private ImageView ivShopifyProduct;
-
+        private View vYoutubeIco;
 
         public ViewHolder(View v) {
             super(v);
@@ -192,6 +199,8 @@ public class DreamCardFragment extends Fragment {
             this.tvLabel = (TextView) v.findViewById(R.id.label);
             this.ivShopifyProduct = (ImageView) v.findViewById(R.id.shopify_product);
             this.tvAvailable = (TextView) v.findViewById(R.id.available_on);
+
+            this.vYoutubeIco = v.findViewById(R.id.youtube_ico);
         }
     }
 }

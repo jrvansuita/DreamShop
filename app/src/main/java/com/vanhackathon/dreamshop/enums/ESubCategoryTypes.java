@@ -8,9 +8,9 @@ import com.vanhackathon.dreamshop.R;
 
 public enum ESubCategoryTypes {
 
-    BEACH("beach", R.mipmap.beach), CAMPING("camping", R.mipmap.camping),
-    ADVENTURE("adventure",R.mipmap.adventure), DESERT("desert",R.mipmap.desert),
-    TOURISM("tourism",R.mipmap.tourism);
+    BEACH("Beach", R.mipmap.beach), CAMPING("Camping", R.mipmap.camping),
+    ADVENTURE("Adventure",R.mipmap.adventure), DESERT("Desert",R.mipmap.desert),
+    TOURISM("Tourism",R.mipmap.tourism);
 
     final int icon;
     final String key;

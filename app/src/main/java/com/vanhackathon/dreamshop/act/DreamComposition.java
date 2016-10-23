@@ -1,6 +1,7 @@
 package com.vanhackathon.dreamshop.act;
 
 import android.app.Activity;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.google.android.youtube.player.YouTubeIntents;
 import com.vanhackathon.dreamshop.R;
 import com.vanhackathon.dreamshop.anim.Animate;
 import com.vanhackathon.dreamshop.api.RestDream;
@@ -29,6 +31,7 @@ import com.vanhackathon.dreamshop.enums.ECategoryTypes;
 import com.vanhackathon.dreamshop.enums.ESubCategoryTypes;
 import com.vanhackathon.dreamshop.fire.ImageStore;
 import com.vanhackathon.dreamshop.listener.OnResult;
+import com.vanhackathon.dreamshop.utils.Utils;
 import com.vanhackathon.dreamshop.val.Validation;
 import com.vanhackathon.dreamshop.view.AutoFitRecycleView;
 
@@ -93,6 +96,7 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
     }
 
     private static final int PICK_PHOTO = 1;
+    private static final int PICK_VIDEO = 2;
 
 
     private boolean isTitleValid() {
@@ -120,7 +124,8 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
 
                     break;
                 case R.id.video:
-
+                    intent = YouTubeIntents.createSearchIntent(this, edTitle.getText().toString());
+                    startActivityForResult(intent, PICK_VIDEO);
 
                     break;
                 case R.id.product:
@@ -153,7 +158,20 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent extra) {
         super.onActivityResult(requestCode, resultCode, extra);
-        if (requestCode == PICK_PHOTO && resultCode == Activity.RESULT_OK) {
+        if (requestCode == PICK_VIDEO) {
+
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            String url = clipboard.getText().toString();
+
+            if (Utils.isValidUrl(url) && Utils.isYoutubeUrl(url)) {
+                layer.setUrl(url);
+                layer.setType("video");
+
+                sendDream();
+            }
+
+
+        } else if (requestCode == PICK_PHOTO && resultCode == Activity.RESULT_OK) {
             if (extra == null) {
                 //Display an error
                 return;

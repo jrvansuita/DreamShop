@@ -4,6 +4,7 @@ package com.vanhackathon.dreamshop.act;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 import com.vanhackathon.dreamshop.R;
 import com.vanhackathon.dreamshop.api.RestDream;
 import com.vanhackathon.dreamshop.apt.DreamsAdapter;
@@ -59,14 +63,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btSearch = (ImageView) findViewById(R.id.search);
         btLogout = (ImageView) findViewById(R.id.logout);
 
-        btUser.setOnClickListener(this);
+        btUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, MyDreamsActivity.class));
+            }
+        });
         btMessages.setOnClickListener(this);
         btSearch.setOnClickListener(this);
         tvCreateDream.setOnClickListener(this);
         btLogout.setOnClickListener(this);
 
 
-        Icon.left(tvCreateDream).black(R.mipmap.add).put();
         Icon.put(btUser, R.mipmap.user);
         Icon.put(btMessages, R.mipmap.messages);
         Icon.put(btSearch, R.mipmap.search);
@@ -136,7 +144,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             FirebaseUser user = auth.getCurrentUser();
 
             if (user != null) {
+                if (user.getPhotoUrl() != null) {
 
+                    ImageView i = (ImageView) findViewById(R.id.profile_pic);
+
+                    Transformation transformation = new RoundedTransformationBuilder()
+                            .borderColor(ContextCompat.getColor(MainActivity.this, R.color.freeze))
+                            .borderWidthDp(3)
+                            .cornerRadiusDp(32)
+                            .oval(false)
+                            .build();
+
+                    Picasso.with(MainActivity.this).load(user.getPhotoUrl()).fit()
+                            .transform(transformation).into(i);
+                    //Icon.left(tvCreateDream, user.getPhotoUrl().).put();
+
+
+                }
             }
         }
     };
@@ -150,12 +174,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
 
-            case R.id.user:
-                break;
             case R.id.messages:
                 break;
 
             case R.id.search:
+                //startActivity(new Intent(this, TestActivity.class));
                 break;
 
             case R.id.add_dream:
@@ -169,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onRefresh() {
+
         RestDream.get().getFeedAll(new OnResult<List<Dream>>() {
             @Override
             public void onResult(List<Dream> result) {

@@ -29,7 +29,7 @@ public class RestUser extends  Rest {
                         this.onFailure(call, new Throwable(response.message()));
                     } else {
                         if (onSucess != null)
-                            onSucess.onSucess(response.body().getName());
+                            onSucess.onSucess(response.body().toString());
                     }
             }
 

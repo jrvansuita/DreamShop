@@ -46,6 +46,7 @@
         <activity
             android:name=".act.DreamLayersActivity"
             android:label="@string/app_name"
+            android:parentActivityName=".act.MainActivity"
             android:screenOrientation="fullUser"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -55,20 +56,29 @@
         <activity
             android:name=".act.DreamComposition"
             android:label="@string/app_name"
+            android:parentActivityName=".act.MainActivity"
             android:screenOrientation="fullUser"
             android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
 
         </activity>
 
         <activity
             android:name=".act.TestActivity"
             android:label="@string/app_name"
+            android:parentActivityName=".act.MainActivity"
             android:screenOrientation="fullUser"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
             android:name=".act.MyDreamsActivity"
+            android:parentActivityName=".act.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="fullUser"
             android:theme="@style/AppTheme.NoActionBar">

@@ -69,11 +69,8 @@ public class SignInActivity extends FragmentActivity implements View.OnClickList
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-
-
                     String userName = edName.getText().toString();
 
                     if (user.getDisplayName() == null && !userName.isEmpty()) {
@@ -112,7 +109,8 @@ public class SignInActivity extends FragmentActivity implements View.OnClickList
 
         user.setFirebase_key(u.getUid());
         user.setName(u.getDisplayName());
-        user.setPhoto_url(u.getPhotoUrl().toString());
+        if (u.getPhotoUrl() != null)
+            user.setPhoto_url(u.getPhotoUrl().toString());
 
         RestUser.get().newUser(user).setOnSucess(new RestUser.OnSucess() {
             @Override
@@ -214,10 +212,10 @@ public class SignInActivity extends FragmentActivity implements View.OnClickList
                 AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
                 auth.signInWithCredential(credential)
                         .addOnCompleteListener(this, defaultTask);
-            } else {
-                showError(result.getStatus().getStatusMessage());
             }
         }
+
+        hideProgress();
     }
 
     private OnCompleteListener<AuthResult> defaultTask = new OnCompleteListener<AuthResult>() {

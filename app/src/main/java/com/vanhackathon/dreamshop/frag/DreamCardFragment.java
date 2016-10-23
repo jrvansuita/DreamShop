@@ -74,7 +74,7 @@ public class DreamCardFragment extends Fragment {
         int layerPositon = getArguments().getInt(POSITION);
 
 
-        if (!dream.getLayers().isEmpty()) {
+        if (dream.getLayers() != null && !dream.getLayers().isEmpty()) {
             Layer layer = dream.getLayers().get(layerPositon);
             holder.tvTitle.setText(layer.getDescription());
 
@@ -83,12 +83,12 @@ public class DreamCardFragment extends Fragment {
                     Picasso.with(context).load(layer.getUrl()).into(holder.ivPic);
                 } else if (layer.getType().equalsIgnoreCase(ELayerType.VIDEO.getKey())) {
 
-                    Icon.put(holder.vYoutubeIco,R.mipmap.youtube);
+                    Icon.put(holder.vYoutubeIco, R.mipmap.youtube);
                     holder.vVideoFrame.setVisibility(View.VISIBLE);
                     holder.vVideoFrame.setId(layer.getId());
                     holder.ivPic.setVisibility(View.GONE);
 
-                    YoutubePreviewFrag.place((FragmentActivity) context,  layer.getId(), layer.getUrl());
+                    YoutubePreviewFrag.place((FragmentActivity) context, layer.getId(), layer.getUrl());
 
 
                 } else if (layer.getType().equalsIgnoreCase(ELayerType.PRODUCT.getKey())) {
@@ -143,11 +143,11 @@ public class DreamCardFragment extends Fragment {
     public static void place(FragmentActivity activity, int layoutId, int idDream, int labelInfo, int position) {
 
 
-            activity.getSupportFragmentManager()
-                    .beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .replace(layoutId, getFrag(idDream, labelInfo, position))
-                    .commit();
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .replace(layoutId, getFrag(idDream, labelInfo, position))
+                .commit();
 
     }
 

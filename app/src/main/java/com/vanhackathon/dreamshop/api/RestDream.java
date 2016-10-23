@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -33,6 +34,7 @@ public class RestDream extends Rest {
 
     public RestDream getOne(int id, OnResult<Dream> onResult) {
         Rest.build().create(IDream.class).getOne(id).enqueue(onResult);
+
         return this;
     }
 
@@ -40,6 +42,18 @@ public class RestDream extends Rest {
         Rest.build().create(IDream.class).newDream(dream).enqueue(onResult);
         return this;
     }
+
+
+    public RestDream delete(int idDream) {
+        Rest.build().create(IDream.class).delete(idDream).enqueue(new OnResult<Dream>() {
+            @Override
+            public void onResult(Dream result) {
+
+            }
+        });
+        return this;
+    }
+
 
     public interface IDream {
         @GET("/feed/dreams/")
@@ -51,8 +65,12 @@ public class RestDream extends Rest {
         @GET("/api/dreams/{id}")
         Call<Dream> getOne(@Path("id") int id);
 
+
         @POST("/api/dreams")
         Call<Dream> newDream(@Body Dream dream);
+
+        @DELETE("/api/dreams/{id}")
+        Call<Dream> delete(@Path("id") int id);
     }
 
 

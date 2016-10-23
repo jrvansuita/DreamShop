@@ -35,7 +35,7 @@ public enum ECategoryTypes {
 
     public static int getIconRes(String key) {
         for (ECategoryTypes e : values()) {
-            if (key.equalsIgnoreCase(e.getKey()))
+            if (e.getKey().equalsIgnoreCase(key))
                 return e.getIcon();
         }
         return R.mipmap.not_found;

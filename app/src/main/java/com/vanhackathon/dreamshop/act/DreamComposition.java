@@ -2,7 +2,9 @@ package com.vanhackathon.dreamshop.act;
 
 import android.app.Activity;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -55,11 +57,27 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
     private Dream dream = new Dream();
     private Layer layer = new Layer();
 
+    private SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.dream_composition);
+
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+
+
+        /*
+        if (getIntent().getScheme().equals("content") || getIntent().getScheme().equals("file")) {
+
+            getIntent();
+
+        }*/
 
 
         sCategory = (Spinner) findViewById(R.id.category);
@@ -82,6 +100,20 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
         sCategory.setAdapter(new SimpleAdapter(this, ECategoryTypes.toArrayStr()));
         sSubcategory.setAdapter(new SimpleAdapter(this, ESubCategoryTypes.toArrayStr()));
         onClear();
+
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        if (Intent.ACTION_SEND.equals(action)) {
+            if ("text/plain".equals(type)) {
+                String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+                if (sharedText != null) {
+                    getState();
+                    sharedPref.edit().clear().commit();
+                    handleVideo(sharedText);
+                }
+            }
+        }
+
     }
 
 
@@ -124,9 +156,9 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
 
                     break;
                 case R.id.video:
+                    saveState();
                     intent = YouTubeIntents.createSearchIntent(this, edTitle.getText().toString());
                     startActivityForResult(intent, PICK_VIDEO);
-
                     break;
                 case R.id.product:
                     RestShopify.build().requestProducts(new OnResult<ProductBundle>() {
@@ -159,16 +191,15 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
     public void onActivityResult(int requestCode, int resultCode, Intent extra) {
         super.onActivityResult(requestCode, resultCode, extra);
         if (requestCode == PICK_VIDEO) {
+            sharedPref.edit().clear().commit();
 
             ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
             String url = clipboard.getText().toString();
+            clipboard.setText("");
 
-            if (Utils.isValidUrl(url) && Utils.isYoutubeUrl(url)) {
-                layer.setUrl(url);
-                layer.setType("video");
 
-                sendDream();
-            }
+            handleVideo(url);
+            hideProgress();
 
 
         } else if (requestCode == PICK_PHOTO && resultCode == Activity.RESULT_OK) {
@@ -252,4 +283,30 @@ public class DreamComposition extends AppCompatActivity implements View.OnClickL
     }
 
 
+    private void saveState() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(String.valueOf(sCategory.getId()), sCategory.getSelectedItemPosition());
+        editor.putInt(String.valueOf(sSubcategory.getId()), sSubcategory.getSelectedItemPosition());
+        editor.putString(String.valueOf(edTitle.getId()), edTitle.getText().toString());
+        editor.putInt("DREAMID", dream.getId());
+
+        editor.commit();
+    }
+
+
+    private void getState() {
+        sCategory.setSelection(sharedPref.getInt(String.valueOf(sCategory.getId()),0));
+        sSubcategory.setSelection(sharedPref.getInt(String.valueOf(sSubcategory.getId()),0));
+        edTitle.setText(sharedPref.getString(String.valueOf(edTitle.getId()),""));
+        dream.setId(sharedPref.getInt("DREAMID",0));
+    }
+
+    private void handleVideo(String url){
+        if (Utils.isValidUrl(url) && Utils.isYoutubeUrl(url)) {
+            layer.setUrl(url);
+            layer.setType("video");
+
+            sendDream();
+        }
+    }
 }

@@ -24,9 +24,16 @@ public class DreamsAdapter extends RecyclerView.Adapter<DreamsAdapter.ViewHolder
     private Context context;
     private List<Dream> data = new ArrayList();
 
+    private View.OnLongClickListener onLongClickListener;
+
     public DreamsAdapter(Context context) {
         this.context = context;
     }
+
+    public void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
+    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,6 +42,7 @@ public class DreamsAdapter extends RecyclerView.Adapter<DreamsAdapter.ViewHolder
 
         FrameLayout frameLayout = new FrameLayout(parent.getContext());
         frameLayout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) height));
+        frameLayout.setOnLongClickListener(onLongClickListener);
         return new ViewHolder(frameLayout);
 
     }
@@ -84,7 +92,6 @@ public class DreamsAdapter extends RecyclerView.Adapter<DreamsAdapter.ViewHolder
     public void remove(int position) {
         data.remove(position);
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, getItemCount());
     }
 
     public interface OnDreamSelected {

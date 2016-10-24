@@ -50,7 +50,11 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.0.1'
 
 
-   // compile 'com.shopify.mobilebuysdk:buy:2.0.2'
+    //Using the REST API
+    //compile 'com.shopify.mobilebuysdk:buy:2.0.2'
+    //configurations {
+    //    all*.exclude group: 'com.google.android.gms', module: 'play-services-wallet'
+    // }
 
 }
 
